@@ -4,34 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b51ab015-a221-4da3-9ffb-20ced2545354" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/README.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/База CV кандидатов.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../shop/web/src/main/java/it/academy/web/security/WebShopControllerSecurityConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../shop/web/src/main/java/it/academy/web/security/WebShopSecurityConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../shop/web/src/main/java/it/academy/web/security/WebShopSecurityInitializer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../shop/web/src/main/java/it/academy/web/security/main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../shop/data/src/main/java/it/academy/dao/DaoConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/../shop/data/src/main/java/it/academy/dao/DaoConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../shop/data/src/main/java/it/academy/dao/ProductDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../shop/data/src/main/java/it/academy/dao/ProductDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../shop/data/src/main/resources/datasource.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../shop/data/src/main/resources/datasource.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../shop/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../shop/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../shop/web/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../shop/web/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../shop/web/src/main/java/it/academy/web/controller/PromoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../shop/web/src/main/java/it/academy/web/controller/PromoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../shop/web/src/main/webapp/WEB-INF/jsp/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../shop/web/src/main/webapp/WEB-INF/jsp/header.jsp" afterDir="false" />
-    </list>
+    <list default="true" id="b51ab015-a221-4da3-9ffb-20ced2545354" name="Default Changelist" comment="prt1" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="mavenHome" value="$PROJECT_DIR$/../../Java/apache-maven-3.6.3/bin" />
         <option name="userSettingsFile" value="D:\Java\apache-maven-3.6.3\conf\settings.xml" />
       </MavenGeneralSettings>
     </option>
@@ -49,7 +33,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -65,6 +49,14 @@
       <option name="presentableId" value="Default" />
       <updated>1615656082683</updated>
     </task>
+    <task id="LOCAL-00001" summary="prt1">
+      <created>1615658462896</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1615658462896</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -77,6 +69,11 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="prt1" />
+    <option name="LAST_COMMIT_MESSAGE" value="prt1" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
