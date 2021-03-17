@@ -29,23 +29,18 @@ public class Candidates {
     @Column(name = "F_BIRTHDATE")
     private Date birthdate;
 
-    @JoinTable(name = "T_CONTACTS",joinColumns = {
-            @JoinColumn(name = "F_PHONE_NUMBER"),
-            @JoinColumn(name = "F_SITE"),
-            @JoinColumn(name = "F_REPOSITORY"),
-            @JoinColumn(name = "F_EMAIL"),
-            @JoinColumn(name = "F_SKYPE")
-    })
-    private List<Contacts> contacts;
+    @OneToOne
+    @JoinColumn(name = "CONTACTS_ID")
+    private Contacts contacts;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "GENDER_ID")
     private Gender gender;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+
+    @ManyToMany
     @JoinTable(name = "T_CANDIDATES_TECHNOLOGIES_RELATIONSHIP",
             joinColumns = @JoinColumn(name = "CANDIDATES_ID"),
             inverseJoinColumns = @JoinColumn(name = "TECHNOLOGIES_ID"))
     private List<Technologies> technologies;
-
 }

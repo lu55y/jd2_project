@@ -1,6 +1,7 @@
 package it.academy.data;
 
 import it.academy.model.Candidates;
+import it.academy.service.builder.SQLBuilder;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -9,7 +10,7 @@ import java.util.List;
 
 
 @Repository
-public class CandidatesDaoImpl<T> implements CandidatesDao<T> {
+public class CandidatesDaoImpl implements CandidatesDao<Candidates> {
 
     private SessionFactory sessionFactory;
 
@@ -19,7 +20,16 @@ public class CandidatesDaoImpl<T> implements CandidatesDao<T> {
     }
 
     @Override
-    public List findByCustomQuery(String query, Class<T> klass) {
-        return sessionFactory.getCurrentSession().createSQLQuery(query).getResultList();
+    public List<Candidates> findAllCandidates(String query) {
+        return sessionFactory.getCurrentSession()
+                .createSQLQuery(query)
+                .getResultList();
+    }
+
+    @Override
+    public List<Candidates> findByCustomQuery(String query) {
+        return sessionFactory.getCurrentSession()
+                .createSQLQuery(query)
+                .getResultList();
     }
 }

@@ -6,5 +6,7 @@ import java.util.List;
 
 public interface CandidatesDao<T>{
 
-    List<T> findByCustomQuery(String query,Class<T> klass);
+    List<T> findAllCandidates(String query);
+
+    List<T> findByCustomQuery(String query);
 }

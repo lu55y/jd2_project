@@ -1,5 +1,6 @@
 package it.academy.data;
 
+import com.mysql.cj.jdbc.Driver;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import it.academy.model.Candidates;
@@ -19,13 +20,12 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
-import java.sql.Driver;
 import java.util.Properties;
 
 
 @PropertySource(value = "classpath:datasource.properties")
 @Configuration
-@ComponentScan("it.academy.data")
+@ComponentScan("it.academy")
 @EnableTransactionManagement
 public class DaoConfiguration {
 

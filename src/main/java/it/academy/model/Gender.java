@@ -13,7 +13,6 @@ public class Gender {
     @Id
     private Integer id;
 
-    @OneToMany(mappedBy = "gender")
     @Column(name = "F_GENDER_NAME")
     private String gender;
 }

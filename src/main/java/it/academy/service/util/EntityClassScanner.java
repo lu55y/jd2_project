@@ -13,35 +13,14 @@ import java.util.stream.Collectors;
 
 public class EntityClassScanner {
 
-    private StringBuilder queryBuilder;
     private EntityClassScanner ecs;
-    public static void main(String[] args) {
-        init(Candidates.class);
+
+    public EntityClassScanner() {
     }
 
-    public EntityClassScanner(Class<?> tClass) {
-        init(tClass);
-    }
-
-    public static void init(Class<?> tClass) {
-        String tableName = getTableName(tClass);
-
-
+    public Map<String, String> geFieldsMap(Class<?> tClass) {
         Field[] fields = tClass.getDeclaredFields();
         List<String> collect = Arrays.stream(fields).map(field -> field.getName()).collect(Collectors.toList());
-
-        Map<String, String> map = getFieldsMap(fields);
-        System.out.println(map);
-
-    }
-
-    private static String getTableName(Class<?> tClass) {
-        if (tClass.isAnnotationPresent(Table.class)) {
-            return tClass.getAnnotation(Table.class).name().toLowerCase();
-        }else return tClass.getName().toLowerCase();
-    }
-
-    private static Map<String, String> getFieldsMap(Field[] fields) {
         Map<String,String> map =new HashMap<>();
         for (Field field : fields) {
             if (field.isAnnotationPresent(Column.class)){
@@ -52,4 +31,11 @@ public class EntityClassScanner {
         }
         return map;
     }
+
+    public String getTableName(Class<?> tClass) {
+        if (tClass.isAnnotationPresent(Table.class)) {
+            return tClass.getAnnotation(Table.class).name().toLowerCase();
+        }else return tClass.getName().toLowerCase();
+    }
+
 }
