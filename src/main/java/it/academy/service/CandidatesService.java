@@ -9,24 +9,14 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class CandidatesService{
+public class CandidatesService<T>{
 
     @Autowired
     private CandidatesDao candidatesDao;
 
     @Transactional
-    public Candidates findCandidatesById(Long id) {
-        return candidatesDao.find(id);
-    }
-
-    @Transactional
-    public String saveNewCandidates(Candidates candidates) {
-        return candidatesDao.add(candidates);
-    }
-
-    @Transactional
-    public List<?> createCustomQuery (String query) {
-        return candidatesDao.readCustomQuery(query);
+    public List<T> createCustomQuery (String query,Class<T> klass) {
+        return candidatesDao.findByCustomQuery(query,klass);
     }
 
 }

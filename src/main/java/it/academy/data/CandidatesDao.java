@@ -4,11 +4,7 @@ import it.academy.model.Candidates;
 
 import java.util.List;
 
-public interface CandidatesDao{
+public interface CandidatesDao<T>{
 
-    String add(Candidates candidates);
-
-    Candidates find(Long id);
-
-    List<?> readCustomQuery(String query);
+    List<T> findByCustomQuery(String query,Class<T> klass);
 }

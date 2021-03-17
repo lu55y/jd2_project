@@ -2,32 +2,31 @@ package it.academy.model;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Data
 @Entity
+@Table(name = "T_CONTACTS")
 public class Contacts {
 
+    @Column(name = "CONTACTS_ID")
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @Column
+    @Column(name = "F_PHONE_NUMBER")
     private String poneNumber;
 
-    @Column
+    @Column(name = "F_SITE")
     private String site;
 
-    @Column
+    @Column(name = "F_REPOSITORY")
     private String repository;
 
-    @Column
+    @Column(name = "F_EMAIL")
     private String email;
 
-    @Column
+    @Column(name = "F_SKYPE")
     private String skype;
 
 

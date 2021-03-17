@@ -1,15 +1,23 @@
 package it.academy.model;
 
+import lombok.Data;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
+@Data
+@Table(name = "T_TECHNOLOGIES")
 public class Technologies {
 
+    @Column(name = "TECHNOLOGIES_ID")
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @Column
-    @ManyToOne
-    private String technologies;
+    @Column(name = "F_TECHNOLOGY_NAME")
+    private String technologyName;
+
+    @ManyToMany(mappedBy = "technologies")
+    private List<Candidates> candidatesList;
 }

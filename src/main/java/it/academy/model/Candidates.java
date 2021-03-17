@@ -9,32 +9,43 @@ import java.util.List;
 
 @Data
 @Entity
+@Table(name = "T_CANDIDATES")
 public class Candidates {
 
+    @Column(name = "CANDIDATES_ID")
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @Column
-    private String surname;
+    @Column(name = "F_FIRSTNAME")
+    private String firstName;
 
-    @Column
-    private String name;
+    @Column(name = "F_LASTNAME")
+    private String lastName;
 
-    @Column
+    @Column(name = "F_PATRONYMIC")
     private String patronymic;
 
-    @Column
+    @Column(name = "F_BIRTHDATE")
     private Date birthdate;
 
-    @Column
+    @JoinTable(name = "T_CONTACTS",joinColumns = {
+            @JoinColumn(name = "F_PHONE_NUMBER"),
+            @JoinColumn(name = "F_SITE"),
+            @JoinColumn(name = "F_REPOSITORY"),
+            @JoinColumn(name = "F_EMAIL"),
+            @JoinColumn(name = "F_SKYPE")
+    })
     private List<Contacts> contacts;
 
-    @Column
+    @ManyToOne
+    @JoinColumn(name = "GENDER_ID")
     private Gender gender;
 
-    @Column
-    @OneToMany(mappedBy = "technologies")
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "T_CANDIDATES_TECHNOLOGIES_RELATIONSHIP",
+            joinColumns = @JoinColumn(name = "CANDIDATES_ID"),
+            inverseJoinColumns = @JoinColumn(name = "TECHNOLOGIES_ID"))
     private List<Technologies> technologies;
 
 }
