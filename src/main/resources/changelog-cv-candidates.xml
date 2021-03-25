@@ -6,7 +6,7 @@
 
     <changeSet id="1" author="pavel">
         <sql>
-            create database if not exists CV_CANDIDATES;
+            create database if not exists CV_CANDIDATES  default char set utf8;
         </sql>
     </changeSet>
 
@@ -14,50 +14,60 @@
         <sql>
             use CV_CANDIDATES;
 
+
+
+
+
             create table if not exists T_CONTACTS (
-            CONTACTS_ID bigint not null auto_increment,
+            CONTACTS_ID int(11) NOT NULL,
             F_PHONE_NUMBER varchar (20) not null,
             F_SITE varchar (255) null,
             F_REPOSITORY varchar (255) null,
             F_EMAIL varchar (100) null,
             F_SKYPE varchar (50) null,
-            primary key (CONTACTS_ID)
-            )CHARACTER SET utf8;
+            PRIMARY KEY (CONTACTS_ID)
+            );
+
+
 
             create table if not exists T_GENDER (
             GENDER_ID int not null,
             F_GENDER_NAME varchar (15) not null,
             primary key (GENDER_ID)
-            )CHARACTER SET utf8;
+            );
 
             create table if not exists T_TECHNOLOGIES (
-            TECHNOLOGIES_ID bigint not null auto_increment,
+            TECHNOLOGIES_ID int not null auto_increment,
             F_TECHNOLOGIES_NAME varchar (50) not null,
             primary key (TECHNOLOGIES_ID)
-            )CHARACTER SET utf8;
+            );
 
             create table if not exists T_CANDIDATES(
-            CANDIDATES_ID bigint not null auto_increment,
+            CANDIDATES_ID int not null auto_increment,
             F_FIRSTNAME varchar(20) not null,
             F_LASTNAME varchar(20) not null,
             F_PATRONYMIC varchar(40) not null,
             F_BIRTHDATE date not null,
-            F_CONTACTS_ID bigint not null,
+            F_CONTACTS_ID int not null,
             F_GENDER_ID int not null,
             primary key (CANDIDATES_ID),
 
             FOREIGN KEY (F_CONTACTS_ID) REFERENCES T_CONTACTS (CONTACTS_ID) ON DELETE CASCADE,
             FOREIGN KEY (F_GENDER_ID) REFERENCES T_GENDER (GENDER_ID) ON DELETE CASCADE
-            )CHARACTER SET utf8;
-
-            create table T_CANDIDATES_TECHNOLOGIES_RELATIONSHIP(
-            CANDIDATES_ID bigint not null,
-            TECHNOLOGIES_ID bigint not null,
-
-            FOREIGN KEY (CANDIDATES_ID) REFERENCES T_CANDIDATES(CANDIDATES_ID) ON DELETE CASCADE,
-            FOREIGN KEY (TECHNOLOGIES_ID) REFERENCES T_TECHNOLOGIES(TECHNOLOGIES_ID) ON DELETE CASCADE,
-            UNIQUE (CANDIDATES_ID, TECHNOLOGIES_ID)
             );
+
+            create table if not exists T_CANDIDATES_TECHNOLOGIES_RELATIONSHIP(
+            F_CANDIDATES_ID int NOT NULL,
+            F_CANDIDATES_TECHNOLOGIES_ID int NOT NULL,
+
+            FOREIGN KEY (F_CANDIDATES_ID) REFERENCES t_candidates (CANDIDATES_ID) ON DELETE CASCADE,
+            FOREIGN KEY (F_CANDIDATES_TECHNOLOGIES_ID) REFERENCES t_technologies (TECHNOLOGIES_ID) ON DELETE CASCADE
+            );
+
+            ALTER TABLE T_CONTACTS CONVERT TO CHARACTER SET utf8;
+            ALTER TABLE T_GENDER CONVERT TO CHARACTER SET utf8;
+            ALTER TABLE T_TECHNOLOGIES CONVERT TO CHARACTER SET utf8;
+            ALTER TABLE T_CANDIDATES CONVERT TO CHARACTER SET utf8;
         </sql>
     </changeSet>
 
@@ -65,15 +75,15 @@
         <sql>
             use CV_CANDIDATES;
             insert into T_CONTACTS (
-            F_PHONE_NUMBER, F_SITE, F_REPOSITORY, F_EMAIL, F_SKYPE) values
-            ('+375(29)123-45-67', null, 'http://github.com/petya',  'petrovich@gmail.com', null),
-            ('+375(29)87-65-43', null, 'http://github.com/vanya', null, 'skype:ivanko'),
-            ('+375(29)999-99-99', 'https://www.linkedin.com/in/mariya/', null, null, null);
+            CONTACTS_ID, F_PHONE_NUMBER, F_SITE, F_REPOSITORY, F_EMAIL, F_SKYPE) values
+            (1,'+375(29)123-45-67', null, 'http://github.com/petya',  'petrovich@gmail.com', null),
+            (2,'+375(29)87-65-43', null, 'http://github.com/vanya', null, 'skype:ivanko'),
+            (3,'+375(29)999-99-99', 'https://www.linkedin.com/in/mariya/', null, null, null);
 
             insert into T_GENDER (
             GENDER_ID, F_GENDER_NAME) values
             (1, 'мужчина'),
-            (2, 'женщина');
+            (2, 'жунщина');
 
             insert into T_TECHNOLOGIES(
             TECHNOLOGIES_ID, F_TECHNOLOGIES_NAME) values
@@ -86,15 +96,14 @@
             (7, 'REST'),
             (8, 'Spring');
 
-            insert into T_CANDIDATES(
-            CANDIDATES_ID, F_FIRSTNAME, F_LASTNAME,
-            F_PATRONYMIC, F_BIRTHDATE, F_CONTACTS_ID, F_GENDER_ID) values
+            insert into T_CANDIDATES (
+            CANDIDATES_ID, F_FIRSTNAME, F_LASTNAME, F_PATRONYMIC, F_BIRTHDATE, CONTACTS_ID, GENDER_ID) values
             (1,'Петр', 'Петров', 'Петрович', '1986-12-12',1,1),
             (2,'Иван', 'Иванов', 'Иванович', '1997-4-4',2,1),
             (3,'Морская', 'Мария', 'Васильевна', '1999-11-07',3,2);
 
             insert into T_CANDIDATES_TECHNOLOGIES_RELATIONSHIP(
-            CANDIDATES_ID, TECHNOLOGIES_ID) values
+            F_CANDIDATES_ID, F_CANDIDATES_TECHNOLOGIES_ID) values
             (1,1),
             (1,2),
             (1,3),

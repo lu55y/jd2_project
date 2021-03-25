@@ -40,7 +40,7 @@ public class Candidates {
 
     @ManyToMany
     @JoinTable(name = "T_CANDIDATES_TECHNOLOGIES_RELATIONSHIP",
-            joinColumns = @JoinColumn(name = "CANDIDATES_ID"),
-            inverseJoinColumns = @JoinColumn(name = "TECHNOLOGIES_ID"))
+            joinColumns = @JoinColumn(name = "F_CANDIDATES_ID",referencedColumnName = "CANDIDATES_ID"),
+            inverseJoinColumns = @JoinColumn(name = "F_CANDIDATES_TECHNOLOGIES_ID",referencedColumnName ="TECHNOLOGIES_ID" ))
     private List<Technologies> technologies;
 }

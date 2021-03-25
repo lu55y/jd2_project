@@ -24,7 +24,8 @@ public class CandidatesServiceTest {
     @Autowired
     CandidatesDao candidatesDao;
 
-//    @Autowired
+    @Autowired
+    ICandidatesService candidatesService;
 //    SQLBuilder sqlBuilder;
 
     @Test
@@ -35,7 +36,10 @@ public class CandidatesServiceTest {
     @Test
     @Transactional
     public void createCustomQuery() {
-        List<Candidates> byCustomQuery = candidatesDao.findByCustomQuery("select * from t_candidates;");
+        List customQuery = candidatesService.createCustomQuery("select * from cv_candidates.T_CANDIDATES;");
+        System.out.println(customQuery);
+
+
 //        sqlBuilder.selectAll(Candidates.class).build();
     }
 }

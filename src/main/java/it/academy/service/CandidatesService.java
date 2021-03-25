@@ -27,5 +27,4 @@ public class CandidatesService implements ICandidatesService<Candidates>{
     public List<Candidates> createCustomQuery (String query) {
         return candidatesDao.findByCustomQuery(query);
     }
-
 }

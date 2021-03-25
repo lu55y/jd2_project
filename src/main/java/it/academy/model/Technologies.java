@@ -15,7 +15,7 @@ public class Technologies {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @Column(name = "F_TECHNOLOGY_NAME")
+    @Column(name = "F_TECHNOLOGIES_NAME")
     private String technologyName;
 
     @ManyToMany(mappedBy = "technologies")
