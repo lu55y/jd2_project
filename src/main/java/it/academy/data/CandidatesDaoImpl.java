@@ -23,13 +23,13 @@ public class CandidatesDaoImpl implements CandidatesDao<Candidates> {
     public List<Candidates> findAllCandidates(String query) {
         return sessionFactory.getCurrentSession()
                 .createSQLQuery(query)
-                .getResultList();
+                .list();
     }
 
     @Override
     public List<Candidates> findByCustomQuery(String query) {
         return sessionFactory.getCurrentSession()
                 .createSQLQuery(query)
-                .getResultList();
+                .list();
     }
 }

@@ -36,7 +36,7 @@ public class CandidatesServiceTest {
     @Test
     @Transactional
     public void createCustomQuery() {
-        List customQuery = candidatesService.createCustomQuery("select * from cv_candidates.T_CANDIDATES;");
+        List customQuery = candidatesService.createCustomQuery("select * from T_CANDIDATES");
         System.out.println(customQuery);
 
 

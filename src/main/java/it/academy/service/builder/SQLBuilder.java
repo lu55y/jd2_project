@@ -6,16 +6,24 @@ public class SQLBuilder implements Builder {
 
     private EntityClassScanner ecs;
     private StringBuilder queryBuilder;
-    private StringBuilder tableColumns;
-    private String tableName=null;
+    private String tableName="";
 
-    public SQLBuilder selectAll(Class<?> klass) {
+    private SQLBuilder(StringBuilder queryBuilder){
+        this.queryBuilder=queryBuilder;
+    }
+
+
+
+
+    public SQLBuilder select(Class<?> klass) {
         queryBuilder = new StringBuilder();
-
         ecs = new EntityClassScanner();
+
         tableName = ecs.getTableName(klass);
         String sep=" ";
-        queryBuilder.append("select * from ")
+
+        queryBuilder.append("select ")
+                .append(columns)
                 .append(tableName)
                 .append(sep).append(";");
         return this;
