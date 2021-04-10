@@ -1,6 +1,6 @@
 package it.academy.service;
 
-import it.academy.data.CandidatesDao;
+import it.academy.data.CandidatesDaoImpl;
 import it.academy.model.Candidates;
 import it.academy.service.builder.SQLBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,16 +10,17 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service("candidatesService")
-public class CandidatesService implements ICandidatesService<Candidates>{
+public class CandidatesService{
 
     @Autowired
-    private CandidatesDao candidatesDao;
+    private CandidatesDaoImpl candidatesDao;
 
+    @Autowired
     SQLBuilder sqlBuilder;
 
     @Transactional
-    public List<Candidates> findAll(String query){
-
+    public List<Candidates> findAll(){
+        String query = sqlBuilder.findAll(Candidates.class).getQuery();
         return candidatesDao.findAllCandidates(query);
     }
 

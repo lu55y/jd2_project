@@ -20,11 +20,11 @@
 
             create table if not exists T_CONTACTS (
             CONTACTS_ID int(11) NOT NULL,
-            F_PHONE_NUMBER varchar (20) not null,
-            F_SITE varchar (255) null,
-            F_REPOSITORY varchar (255) null,
-            F_EMAIL varchar (100) null,
-            F_SKYPE varchar (50) null,
+            PHONE_NUMBER varchar (20) not null,
+            SITE varchar (255) null,
+            REPOSITORY varchar (255) null,
+            EMAIL varchar (100) null,
+            SKYPE varchar (50) null,
             PRIMARY KEY (CONTACTS_ID)
             );
 
@@ -32,36 +32,36 @@
 
             create table if not exists T_GENDER (
             GENDER_ID int not null,
-            F_GENDER_NAME varchar (15) not null,
+            GENDER varchar (15) not null,
             primary key (GENDER_ID)
             );
 
             create table if not exists T_TECHNOLOGIES (
             TECHNOLOGIES_ID int not null auto_increment,
-            F_TECHNOLOGIES_NAME varchar (50) not null,
+            TECHNOLOGIESNAME varchar (50) not null,
             primary key (TECHNOLOGIES_ID)
             );
 
             create table if not exists T_CANDIDATES(
             CANDIDATES_ID int not null auto_increment,
-            F_FIRSTNAME varchar(20) not null,
-            F_LASTNAME varchar(20) not null,
-            F_PATRONYMIC varchar(40) not null,
-            F_BIRTHDATE date not null,
-            F_CONTACTS_ID int not null,
-            F_GENDER_ID int not null,
+            FIRSTNAME varchar(20) not null,
+            LASTNAME varchar(20) not null,
+            PATRONYMIC varchar(40) not null,
+            BIRTHDATE date not null,
+            CONTACTS_ID int not null,
+            GENDER_ID int not null,
             primary key (CANDIDATES_ID),
 
-            FOREIGN KEY (F_CONTACTS_ID) REFERENCES T_CONTACTS (CONTACTS_ID) ON DELETE CASCADE,
-            FOREIGN KEY (F_GENDER_ID) REFERENCES T_GENDER (GENDER_ID) ON DELETE CASCADE
+            FOREIGN KEY (CONTACTS_ID) REFERENCES T_CONTACTS (CONTACTS_ID) ON DELETE CASCADE,
+            FOREIGN KEY (GENDER_ID) REFERENCES T_GENDER (GENDER_ID) ON DELETE CASCADE
             );
 
             create table if not exists T_CANDIDATES_TECHNOLOGIES_RELATIONSHIP(
-            F_CANDIDATES_ID int NOT NULL,
-            F_CANDIDATES_TECHNOLOGIES_ID int NOT NULL,
+            CANDIDATES_ID int NOT NULL,
+            CANDIDATES_TECHNOLOGIES_ID int NOT NULL,
 
-            FOREIGN KEY (F_CANDIDATES_ID) REFERENCES t_candidates (CANDIDATES_ID) ON DELETE CASCADE,
-            FOREIGN KEY (F_CANDIDATES_TECHNOLOGIES_ID) REFERENCES t_technologies (TECHNOLOGIES_ID) ON DELETE CASCADE
+            FOREIGN KEY (CANDIDATES_ID) REFERENCES t_candidates (CANDIDATES_ID) ON DELETE CASCADE,
+            FOREIGN KEY (CANDIDATES_TECHNOLOGIES_ID) REFERENCES t_technologies (TECHNOLOGIES_ID) ON DELETE CASCADE
             );
 
             ALTER TABLE T_CONTACTS CONVERT TO CHARACTER SET utf8;
@@ -75,18 +75,18 @@
         <sql>
             use CV_CANDIDATES;
             insert into T_CONTACTS (
-            CONTACTS_ID, F_PHONE_NUMBER, F_SITE, F_REPOSITORY, F_EMAIL, F_SKYPE) values
+            CONTACTS_ID, PHONENUMBER, SITE, REPOSITORY, EMAIL, SKYPE) values
             (1,'+375(29)123-45-67', null, 'http://github.com/petya',  'petrovich@gmail.com', null),
             (2,'+375(29)87-65-43', null, 'http://github.com/vanya', null, 'skype:ivanko'),
             (3,'+375(29)999-99-99', 'https://www.linkedin.com/in/mariya/', null, null, null);
 
             insert into T_GENDER (
-            GENDER_ID, F_GENDER_NAME) values
+            GENDER_ID, GENDER) values
             (1, 'мужчина'),
             (2, 'жунщина');
 
             insert into T_TECHNOLOGIES(
-            TECHNOLOGIES_ID, F_TECHNOLOGIES_NAME) values
+            TECHNOLOGIES_ID, TECHNOLOGIESNAME) values
             (1, 'Git'),
             (2, 'Spring Boot'),
             (3, 'HTML'),
@@ -97,13 +97,13 @@
             (8, 'Spring');
 
             insert into T_CANDIDATES (
-            CANDIDATES_ID, F_FIRSTNAME, F_LASTNAME, F_PATRONYMIC, F_BIRTHDATE, CONTACTS_ID, GENDER_ID) values
+            CANDIDATES_ID, FIRSTNAME, LASTNAME, PATRONYMIC, BIRTHDATE, CONTACTS_ID, GENDER_ID) values
             (1,'Петр', 'Петров', 'Петрович', '1986-12-12',1,1),
             (2,'Иван', 'Иванов', 'Иванович', '1997-4-4',2,1),
             (3,'Морская', 'Мария', 'Васильевна', '1999-11-07',3,2);
 
             insert into T_CANDIDATES_TECHNOLOGIES_RELATIONSHIP(
-            F_CANDIDATES_ID, F_CANDIDATES_TECHNOLOGIES_ID) values
+            CANDIDATES_ID, CANDIDATES_TECHNOLOGIES_ID) values
             (1,1),
             (1,2),
             (1,3),

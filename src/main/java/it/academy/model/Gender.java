@@ -9,11 +9,11 @@ import javax.persistence.*;
 @Table(name = "T_GENDER")
 public class Gender {
 
-    @Column(name = "GENDER_ID")
+    @Column(name = "GENDER_ID",nullable = false)
     @Id
     private Integer id;
 
-    @Column(name = "F_GENDER_NAME")
+    @Column(name = "GENDER",nullable = false)
     private String gender;
 }
 

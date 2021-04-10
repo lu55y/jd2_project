@@ -9,24 +9,24 @@ import javax.persistence.*;
 @Table(name = "T_CONTACTS")
 public class Contacts {
 
-    @Column(name = "CONTACTS_ID")
+    @Column(name = "CONTACTS_ID",nullable = false)
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @Column(name = "F_PHONE_NUMBER")
+    @Column(name = "PHONENUMBER",nullable = false)
     private String poneNumber;
 
-    @Column(name = "F_SITE")
+    @Column(name = "SITE")
     private String site;
 
-    @Column(name = "F_REPOSITORY")
+    @Column(name = "REPOSITORY")
     private String repository;
 
-    @Column(name = "F_EMAIL")
+    @Column(name = "EMAIL")
     private String email;
 
-    @Column(name = "F_SKYPE")
+    @Column(name = "SKYPE")
     private String skype;
 
 

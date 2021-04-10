@@ -1,6 +1,7 @@
 package it.academy.service;
 
 import it.academy.data.CandidatesDao;
+import it.academy.data.CandidatesDaoImpl;
 import it.academy.data.DaoConfiguration;
 import it.academy.model.Candidates;
 import it.academy.service.builder.SQLBuilder;
@@ -11,6 +12,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.ResultSet;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -22,10 +24,10 @@ public class CandidatesServiceTest {
     Logger logger = Logger.getLogger(getClass().getName());
 
     @Autowired
-    CandidatesDao candidatesDao;
+    SQLBuilder sqlBuilder;
 
     @Autowired
-    ICandidatesService candidatesService;
+    CandidatesService candidatesService;
 //    SQLBuilder sqlBuilder;
 
     @Test
@@ -36,10 +38,15 @@ public class CandidatesServiceTest {
     @Test
     @Transactional
     public void createCustomQuery() {
-        List customQuery = candidatesService.createCustomQuery("select * from T_CANDIDATES");
-        System.out.println(customQuery);
-
-
-//        sqlBuilder.selectAll(Candidates.class).build();
+//        String query = sqlBuilder
+//                .equal("lastName", "Морская")
+//                .and()
+//                .equal("firstName", "Мария")
+//                .getQuery();
+//
+//        System.out.println(query);
+//
+//        List<Candidates> customQuery = candidatesService.createCustomQuery(query);
+//        customQuery.forEach(System.out::println);
     }
 }

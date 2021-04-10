@@ -2,6 +2,7 @@ package it.academy.model;
 
 
 import lombok.Data;
+import lombok.NonNull;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -12,35 +13,35 @@ import java.util.List;
 @Table(name = "T_CANDIDATES")
 public class Candidates {
 
-    @Column(name = "CANDIDATES_ID")
+    @Column(name = "CANDIDATES_ID", nullable = false)
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @Column(name = "F_FIRSTNAME")
+    @Column(name = "FIRSTNAME",nullable = false)
     private String firstName;
 
-    @Column(name = "F_LASTNAME")
+    @Column(name = "LASTNAME",nullable = false)
     private String lastName;
 
-    @Column(name = "F_PATRONYMIC")
+    @Column(name = "PATRONYMIC",nullable = false)
     private String patronymic;
 
-    @Column(name = "F_BIRTHDATE")
+    @Column(name = "BIRTHDATE",nullable = false)
     private Date birthdate;
 
     @OneToOne
-    @JoinColumn(name = "CONTACTS_ID")
+    @JoinColumn(name = "CONTACTS_ID",nullable = false)
     private Contacts contacts;
 
     @OneToOne
-    @JoinColumn(name = "GENDER_ID")
+    @JoinColumn(name = "GENDER_ID",nullable = false)
     private Gender gender;
 
 
     @ManyToMany
     @JoinTable(name = "T_CANDIDATES_TECHNOLOGIES_RELATIONSHIP",
-            joinColumns = @JoinColumn(name = "F_CANDIDATES_ID",referencedColumnName = "CANDIDATES_ID"),
-            inverseJoinColumns = @JoinColumn(name = "F_CANDIDATES_TECHNOLOGIES_ID",referencedColumnName ="TECHNOLOGIES_ID" ))
+            joinColumns = @JoinColumn(name = "CANDIDATES_ID",referencedColumnName = "CANDIDATES_ID"),
+            inverseJoinColumns = @JoinColumn(name = "CANDIDATES_TECHNOLOGIES_ID",referencedColumnName ="TECHNOLOGIES_ID" ))
     private List<Technologies> technologies;
 }

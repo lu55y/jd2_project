@@ -1,13 +1,14 @@
 package it.academy.service;
 
-import org.springframework.transaction.annotation.Transactional;
+import it.academy.model.Candidates;
+import org.hibernate.annotations.NamedQuery;
 
 import java.util.List;
 
-public interface ICandidatesService<T> {
+public interface ICandidatesService {
 
-    public List<T> findAll(String query);
+    public List<Candidates> findAll(String query);
 
-    public List<T> createCustomQuery (String query);
+    public List<Candidates> createCustomQuery(String query);
 
 }

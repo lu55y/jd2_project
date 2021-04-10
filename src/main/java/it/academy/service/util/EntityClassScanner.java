@@ -18,9 +18,9 @@ public class EntityClassScanner {
     public EntityClassScanner() {
     }
 
-    public Map<String, String> geFieldsMap(Class<?> tClass) {
+    public Map<String, String> getFieldsMap(Class<?> tClass) {
         Field[] fields = tClass.getDeclaredFields();
-        List<String> collect = Arrays.stream(fields).map(field -> field.getName()).collect(Collectors.toList());
+        List<String> collect = Arrays.stream(fields).map(Field::getName).collect(Collectors.toList());
         Map<String,String> map =new HashMap<>();
         for (Field field : fields) {
             if (field.isAnnotationPresent(Column.class)){
@@ -33,9 +33,15 @@ public class EntityClassScanner {
     }
 
     public String getTableName(Class<?> tClass) {
+    String tableName = "";
         if (tClass.isAnnotationPresent(Table.class)) {
-            return tClass.getAnnotation(Table.class).name().toLowerCase();
-        }else return tClass.getName().toLowerCase();
+        Table tableNameAnnotation = tClass.getAnnotation(Table.class);
+        tableName = tableNameAnnotation.name().toLowerCase();
     }
 
+        if (tableName.isEmpty()) {
+        tableName = "t_" + tClass.getSimpleName().toLowerCase() ;
+    }
+        return tableName;
+}
 }

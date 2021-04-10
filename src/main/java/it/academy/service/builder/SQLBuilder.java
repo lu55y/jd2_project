@@ -1,47 +1,61 @@
 package it.academy.service.builder;
 
 import it.academy.service.util.EntityClassScanner;
+import org.springframework.stereotype.Component;
 
-public class SQLBuilder implements Builder {
+import java.util.Map;
+
+@Component
+public class SQLBuilder extends QueryBuilder {
 
     private EntityClassScanner ecs;
+
     private StringBuilder queryBuilder;
     private String tableName="";
-
-    private SQLBuilder(StringBuilder queryBuilder){
-        this.queryBuilder=queryBuilder;
-    }
+    private Map<String, String> fieldsMap=null;
 
 
+    public SQLBuilder findAll(Class<?> klass) {
+        addEntityClass(klass);
 
-
-    public SQLBuilder select(Class<?> klass) {
         queryBuilder = new StringBuilder();
-        ecs = new EntityClassScanner();
-
-        tableName = ecs.getTableName(klass);
         String sep=" ";
-
-        queryBuilder.append("select ")
-                .append(columns)
+        queryBuilder.append("SELECT * FROM ")
                 .append(tableName)
-                .append(sep).append(";");
+                .append(sep);
+        return this;
+    }
+
+    public SQLBuilder equal(String column, String value){
+        if(fieldsMap.containsKey(column)){
+            queryBuilder.append(" WERE ")
+                    .append(column.toLowerCase())
+                    .append("=")
+                    .append(value);
+            return this;
+        }return this;
+    }
+
+    public SQLBuilder and(){
+        queryBuilder.append(" AND ");
         return this;
     }
 
 
-    public <T> SQLBuilder selectWithParams(Class<T> tClass,String... params) {
+    @Override
+    public void addEntityClass(Class<?> klass) {
 
-        return this;
+        ecs = new EntityClassScanner();
+        fieldsMap = ecs.getFieldsMap(klass);
+        tableName = ecs.getTableName(klass);
+
     }
+
 
     @Override
-    public Class<?> setEntity(Class<?> tClass) {
-        return tClass;
+    public String getQuery() {
+        return queryBuilder.append(" ").toString();
     }
 
-    @Override
-    public String build() {
-    return queryBuilder.toString();
-    }
+
 }
