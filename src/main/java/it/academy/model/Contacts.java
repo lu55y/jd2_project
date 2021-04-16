@@ -28,6 +28,4 @@ public class Contacts {
 
     @Column(name = "SKYPE")
     private String skype;
-
-
 }

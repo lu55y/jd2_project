@@ -13,22 +13,26 @@ import java.util.List;
 @Repository
 public class CandidatesDaoImpl implements CandidatesDao<Candidates> {
 
+    @Autowired
     private SessionFactory factory;
 
-    @Autowired
-    private CandidatesDaoImpl(SessionFactory sessionFactory){
-        this.factory=sessionFactory;
-    }
+//    private CandidatesDaoImpl(SessionFactory sessionFactory){
+//        this.factory=sessionFactory;
+//    }
 
     @Override
     public List<Candidates> findAllCandidates(String query) {
-        Session session = factory.getCurrentSession();
-        return session.createSQLQuery(query).addEntity(Candidates.class).getResultList();
+        return factory.getCurrentSession()
+                .createSQLQuery(query)
+                .addEntity(Candidates.class)
+                .list();
     }
 
     @Override
     public List<Candidates> findByCustomQuery(String query) {
-        Session session= factory.getCurrentSession();
-        return session.createSQLQuery(query).addEntity(Candidates.class).getResultList();
+        return factory.getCurrentSession()
+                .createSQLQuery(query)
+                .addEntity(Candidates.class)
+                .list();
     }
 }

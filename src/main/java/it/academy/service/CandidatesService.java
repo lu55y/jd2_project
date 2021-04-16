@@ -20,7 +20,7 @@ public class CandidatesService{
 
     @Transactional
     public List<Candidates> findAll(){
-        String query = sqlBuilder.findAll(Candidates.class).getQuery();
+        String query = sqlBuilder.find(Candidates.class).getQuery();
         return candidatesDao.findAllCandidates(query);
     }
 
